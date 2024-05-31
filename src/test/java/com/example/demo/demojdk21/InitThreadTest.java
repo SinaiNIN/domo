@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class InitThreadTest {
     private InitThread initThread;
     private static final int THREAD_NUMBER = 30000;
-    private static final int MAX_THREAD_PER_POOL = 5000;
+    private static final int MAX_THREAD_PER_POOL = 100;
 
     @BeforeEach
     void setUp() {
