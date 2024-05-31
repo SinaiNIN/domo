@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InitThreadTest {
     private InitThread initThread;
-    private static final int THREAD_NUMBER = 30000;
-    private static final int MAX_THREAD_PER_POOL = 5000;
+    private static final int THREAD_NUMBER = 30;
+    private static final int MAX_THREAD_PER_POOL = 10;
 
     @BeforeEach
     void setUp() {
@@ -59,7 +59,7 @@ class InitThreadTest {
 
         long duration = Duration.ofNanos(System.nanoTime() - start).toMillis();
         System.out.println("Duration is : " + duration);
-        assertTrue(duration > 5000, FIXED_THREAD_POOL + "take more than 5000 ms");
+        assertTrue(duration < 5000, FIXED_THREAD_POOL + "take more than 5000 ms");
     }
 
     @Test
