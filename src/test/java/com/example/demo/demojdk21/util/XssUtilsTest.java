@@ -3,15 +3,23 @@ package com.example.demo.demojdk21.util;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class XssUtilsTest {
+    private XssUtils xssUtils;
+
+    @Before
+    public void setUp() {
+        xssUtils = new XssUtils();
+    }
 
     // Internet Explorer, Edge
     @Test
     public void testXssScript1() {
         String content = "<svg><script>alert(1)<p>";
         assertTrue(XssUtils.isContainXssString(content));
+        assertFalse(false);
     }
 
     // Firefox

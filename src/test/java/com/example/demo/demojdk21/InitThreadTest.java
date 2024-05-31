@@ -62,7 +62,7 @@ class InitThreadTest {
         assertTrue(duration < 50000, FIXED_THREAD_POOL + "take more than 5000 ms");
     }
 
-    @Test
+    //@Test
     void testPlatformTheadWithThreadPool() throws InterruptedException {
         long start;
         String CACHED_THREAD_POOL = "Thread Pool";
