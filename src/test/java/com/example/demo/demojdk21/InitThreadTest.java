@@ -17,8 +17,9 @@ class InitThreadTest {
     void setUp() {
         initThread = new InitThread();
     }
+
     @Test
-    void testVirtualThead() throws InterruptedException {
+    void testVirtualThreadPerTaskExecutor() throws InterruptedException {
         long start;
         String VIRTUAL_THREAD = "Virtual Threads";
         start = initThread.executeAndTimeTasks(Executors.newVirtualThreadPerTaskExecutor(), VIRTUAL_THREAD, THREAD_NUMBER);
@@ -27,6 +28,29 @@ class InitThreadTest {
         System.out.println("Duration is : " + duration);
         assertTrue(duration < 3000, VIRTUAL_THREAD + "take less than 3000 ms");
     }
+
+    @Test
+    void testStartVirtualThread() throws InterruptedException {
+        long start;
+        String VIRTUAL_THREAD = "Virtual Threads";
+        start = initThread.executeTasksWithVirtualThead(THREAD_NUMBER);
+
+        long duration = Duration.ofNanos(System.nanoTime() - start).toMillis();
+        System.out.println("Duration is : " + duration);
+        assertTrue(duration < 3000, VIRTUAL_THREAD + "take less than 3000 ms");
+    }
+
+    @Test
+    void testOfVirtualThread() throws InterruptedException {
+        long start;
+        String VIRTUAL_THREAD = "Virtual Threads";
+        start = initThread.executeTasksWithOfVirtualThead(THREAD_NUMBER);
+
+        long duration = Duration.ofNanos(System.nanoTime() - start).toMillis();
+        System.out.println("Duration is : " + duration);
+        assertTrue(duration < 3000, VIRTUAL_THREAD + "take less than 3000 ms");
+    }
+
     @Test
     void testPlatformTheadWithFixedThreadPool() throws InterruptedException {
         long start;
@@ -35,7 +59,18 @@ class InitThreadTest {
 
         long duration = Duration.ofNanos(System.nanoTime() - start).toMillis();
         System.out.println("Duration is : " + duration);
-        assertTrue(duration >  5000, FIXED_THREAD_POOL + "take more than 5000 ms");
+        assertTrue(duration > 5000, FIXED_THREAD_POOL + "take more than 5000 ms");
+    }
+
+    @Test
+    void testPlatformTheadWithThreadPool() throws InterruptedException {
+        long start;
+        String CACHED_THREAD_POOL = "Thread Pool";
+        start = initThread.executeTasksWithPlatformThread(THREAD_NUMBER);
+
+        long duration = Duration.ofNanos(System.nanoTime() - start).toMillis();
+        System.out.println("Duration is : " + duration);
+        assertTrue(duration < 3000, CACHED_THREAD_POOL + "take less than 3000 ms");
     }
 
 }
